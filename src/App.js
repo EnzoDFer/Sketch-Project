@@ -1,25 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
+
+const Container = () => {
+  const [rows, onRowChange] = useState(50);
+  const [cols, onColChange] = useState(50);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="wrapper">
+        <div className="wrapper">
+          <div>Column #: {cols}</div>
+          <Slider value={cols} onValueChange={onColChange} className="slider" id='rowSlider'/>
+        </div>
+        <div className="wrapper">
+          <div>Row #: {rows}</div>
+          <Slider value={rows} onValueChange={onRowChange}className="slider" id='colSlider'/>
+        </div>
+      </div>
+      <Grid rowNum={rows} colNum={cols}/>
+    </>
   );
-}
+};
 
-export default App;
+const Slider = ({value,onValueChange}) => {
+  function sliderHandler(e) {
+    value = onValueChange(e.target.value);
+  }
+
+  return (
+    <input
+      type="range"
+      min="10"
+      max="100"
+      value={value}
+      onChange={(e)=>sliderHandler(e)}
+    />
+  );
+};
+
+const Grid = ({rowNum,colNum}) => {
+  let children = [];
+  for (let i=0;i<colNum*rowNum;i++) {
+    children.push(<Square />);
+  }
+
+  return (
+    <div 
+      className="grid"
+      style={{gridTemplate:`repeat(${rowNum},
+        ${100/rowNum}%)/repeat(${colNum},${100/colNum}%)`}}
+    >
+      {children}
+    </div>
+  ); 
+};
+
+const Square = () => {
+  const [hovered, setHover] = useState(false);
+  return (
+    <div
+      onMouseEnter={()=>setHover(true)}
+      className={hovered?'square hovered':'square'}
+    >
+    </div>
+  )
+};
+
+export default Container;
