@@ -17,10 +17,10 @@ const Container = () => {
   }
 
   function resetBoard() {
-    //setBoard(false);
-    alert('works');
+    for (let i=0;i<boardState.length;i++) {
+      setBoard(Array(rows * cols).fill(false));
+    }
   }
-
 
   function handleDraw(i) {
     const childState = boardState.slice();
@@ -47,7 +47,7 @@ const Container = () => {
     </>
   );
 };
-//<Button handleClick={()=>resetBoard()} text='RESET'/>
+
 const Button = ({handleClick,text}) => {
   return (
     <button
