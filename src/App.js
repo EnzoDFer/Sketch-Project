@@ -1,9 +1,27 @@
-import { useState } from "react";
+import { Children, useState } from "react";
 
 
 const Container = () => {
-  const [rows, onRowChange] = useState(50);
-  const [cols, onColChange] = useState(50);
+  const [rows, onRowChange] = useState(10);
+  const [cols, onColChange] = useState(10);
+  let squareNum = rows * cols;
+  const [boardState, setBoard] = useState(Array(squareNum).fill(false));
+
+  const children = [];
+  for (let i=0;i<rows*cols;i++) {
+    children.push(<Square 
+      currentState={boardState[i]} 
+      returnState={()=>handleDraw(i)}
+      key={i}
+      />
+      );
+  }
+
+  function handleDraw(i) {
+    const childState = boardState.slice();
+    childState[i] = 'square hovered';
+    setBoard(childState); //setting drawBoard to current game drawing
+  }
 
   return (
     <>
@@ -17,7 +35,7 @@ const Container = () => {
           <Slider value={rows} onValueChange={onRowChange} />
         </div>
       </div>
-      <Grid rowNum={rows} colNum={cols}/>
+      <Grid rowNum={rows} colNum={cols} gridChildren={children}/>
     </>
   );
 };
@@ -26,7 +44,7 @@ const Slider = ({value,onValueChange}) => {
   function sliderHandler(e) {
     value = onValueChange(e.target.value);
   }
-
+  
   return (
     <input
       type="range"
@@ -40,29 +58,23 @@ const Slider = ({value,onValueChange}) => {
   );
 };
 
-const Grid = ({rowNum,colNum}) => {
-  let children = [];
-  for (let i=0;i<colNum*rowNum;i++) {
-    children.push(<Square />);
-  }
-
+const Grid = ({rowNum,colNum,gridChildren}) => {
   return (
     <div 
       className="grid"
       style={{gridTemplate:`repeat(${rowNum},
         ${100/rowNum}%)/repeat(${colNum},${100/colNum}%)`}}
     >
-      {children}
+      {gridChildren}
     </div>
   ); 
 };
 
-const Square = () => {
-  const [hovered, setHover] = useState(false);
+const Square = ({currentState,returnState}) => {
   return (
     <div
-      onMouseEnter={()=>setHover(true)}
-      className={hovered?'square hovered':'square'}
+      onMouseEnter={()=>returnState()}
+      className={currentState?currentState:'square'}
     >
     </div>
   )
