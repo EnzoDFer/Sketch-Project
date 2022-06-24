@@ -17,9 +17,7 @@ const Container = () => {
   }
 
   function resetBoard() {
-    for (let i=0;i<boardState.length;i++) {
-      setBoard(Array(rows * cols).fill(false));
-    }
+    setBoard(Array(rows * cols).fill(false));
   }
 
   function handleDraw(i) {
