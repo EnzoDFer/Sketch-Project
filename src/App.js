@@ -1,11 +1,10 @@
-import { Children, useState } from "react";
+import { useState } from "react";
 
 
 const Container = () => {
   const [rows, onRowChange] = useState(10);
   const [cols, onColChange] = useState(10);
-  let squareNum = rows * cols;
-  const [boardState, setBoard] = useState(Array(squareNum).fill(false));
+  const [boardState, setBoard] = useState(Array(rows * cols).fill(false));
 
   const children = [];
   for (let i=0;i<rows*cols;i++) {
@@ -16,6 +15,12 @@ const Container = () => {
       />
       );
   }
+
+  function resetBoard() {
+    //setBoard(false);
+    alert('works');
+  }
+
 
   function handleDraw(i) {
     const childState = boardState.slice();
@@ -34,11 +39,26 @@ const Container = () => {
           <div>Row #: {rows}</div>
           <Slider value={rows} onValueChange={onRowChange} />
         </div>
+        <div className="wrapper">
+          <Button handleClick={()=>resetBoard()} text='RESET'/>
+        </div>
       </div>
       <Grid rowNum={rows} colNum={cols} gridChildren={children}/>
     </>
   );
 };
+//<Button handleClick={()=>resetBoard()} text='RESET'/>
+const Button = ({handleClick,text}) => {
+  return (
+    <button
+      id='reset'
+      onClick={()=>handleClick()}
+    >
+      {text}
+    </button>
+  );
+}
+
 
 const Slider = ({value,onValueChange}) => {
   function sliderHandler(e) {
@@ -79,5 +99,7 @@ const Square = ({currentState,returnState}) => {
     </div>
   )
 };
+
+
 
 export default Container;

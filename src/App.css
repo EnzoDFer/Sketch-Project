@@ -68,3 +68,18 @@ button {
 .slider:hover {
   opacity: 1;
 }
+
+#reset {
+  background: aquamarine;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  opacity: 0.8;
+  border-radius: 15px;
+  border: 1px solid transparent;
+}
+#reset:hover,
+#reset:active {
+  opacity:1;
+  border: 1px solid black;
+}
