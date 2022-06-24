@@ -8,13 +8,13 @@ const Container = () => {
   return (
     <>
       <div className="wrapper">
-        <div className="wrapper">
+        <div className="wrapper vertWrapper">
           <div>Column #: {cols}</div>
-          <Slider value={cols} onValueChange={onColChange} className="slider" id='rowSlider'/>
+          <Slider value={cols} onValueChange={onColChange} />
         </div>
-        <div className="wrapper">
+        <div className="wrapper vertWrapper">
           <div>Row #: {rows}</div>
-          <Slider value={rows} onValueChange={onRowChange}className="slider" id='colSlider'/>
+          <Slider value={rows} onValueChange={onRowChange} />
         </div>
       </div>
       <Grid rowNum={rows} colNum={cols}/>
@@ -32,6 +32,8 @@ const Slider = ({value,onValueChange}) => {
       type="range"
       min="10"
       max="100"
+      className="slider" 
+      id='rowSlider'
       value={value}
       onChange={(e)=>sliderHandler(e)}
     />

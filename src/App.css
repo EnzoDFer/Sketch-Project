@@ -28,6 +28,13 @@ button {
 
 .wrapper {
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.vertWrapper {
+  flex-direction: column;
 }
 
 .grid {
@@ -54,7 +61,7 @@ button {
   background: cyan;
   outline: none;
   opacity: 0.7;
-  appearance: none;
+  -webkit-appearance: none;
   cursor: pointer;
   }
 
