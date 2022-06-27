@@ -1,31 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const Container = () => {
   const [rows, onRowChange] = useState(10);
   const [cols, onColChange] = useState(10);
-  const [boardState, setBoard] = useState(Array(rows * cols).fill(false));
+  const [children,doReset] = useState([]);
 
-  const children = [];
-  for (let i=0;i<rows*cols;i++) {
-    children.push(<Square 
-      currentState={boardState[i]} 
-      returnState={()=>handleDraw(i)}
-      key={i}
-      />
+  useEffect(()=>{
+    for (let i=0;i<rows*cols;i++) {
+      children.push(<Square 
+        key={`key:${i}`}
+        />
       );
-  }
-
-  function resetBoard() {
-    setBoard(Array(rows * cols).fill(false));
-  }
-
-  function handleDraw(i) {
-    const childState = boardState.slice();
-    childState[i] = 'square hovered';
-    setBoard(childState); //setting drawBoard to current game drawing
-  }
-
+    }
+  },[children,cols,rows]);
   return (
     <>
       <div className="wrapper">
@@ -38,7 +26,7 @@ const Container = () => {
           <Slider value={rows} onValueChange={onRowChange} />
         </div>
         <div className="wrapper">
-          <Button handleClick={()=>resetBoard()} text='RESET'/>
+          <Button handleClick={()=>doReset([])} text='RESET'/>
         </div>
       </div>
       <Grid rowNum={rows} colNum={cols} gridChildren={children}/>
@@ -88,11 +76,19 @@ const Grid = ({rowNum,colNum,gridChildren}) => {
   ); 
 };
 
-const Square = ({currentState,returnState}) => {
+const Square = () => {
+  const [hover,setHover] = useState(false);
+  function handler(e) {
+    if (e.buttons===1) {
+      setHover(true);
+    }
+  }
+
   return (
     <div
-      onMouseEnter={()=>returnState()}
-      className={currentState?currentState:'square'}
+      onMouseDown={()=>setHover(true)}
+      onMouseMove={(e)=>handler(e)}
+      className={(hover)?'square hovered':'square'}
     >
     </div>
   )
