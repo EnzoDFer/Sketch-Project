@@ -5,19 +5,21 @@ const Container = () => {
   const [rows, onRowChange] = useState(10);
   const [cols, onColChange] = useState(10);
   const [val, setVal] = useState(0);
+  const [color,setColor] = useState('#333');
 
   const children = []
   for (let i=0;i<rows*cols;i++) {
     children.push(<Square 
       key={`key:${i}`}
       val={val}
+      color={color}
       />
     );
   }
   
   return (
-    <>
-      <div className="wrapper">
+    <div className="app">
+      <div className="wrapper" id='controls'>
         <div className="wrapper vertWrapper">
           <div>Column #: {cols}</div>
           <Slider value={cols} onValueChange={onColChange} />
@@ -30,8 +32,13 @@ const Container = () => {
           <Button handleClick={()=>setVal(val+1)} text='RESET'/>
         </div>
       </div>
-      <Grid rowNum={rows} colNum={cols} gridChildren={children}/>
-    </>
+      <div id="settings" className="vertWrapper">
+        <Button handleClick={()=>setColor('#0078d7')} text='Blue'/>
+      </div>
+      <div id="main">
+        <Grid rowNum={rows} colNum={cols} gridChildren={children}/>
+      </div>
+    </div>
   );
 };
 
@@ -77,7 +84,7 @@ const Grid = ({rowNum,colNum,gridChildren}) => {
   ); 
 };
 
-const Square = ({val}) => {
+const Square = ({val,color}) => {
   const [hover,setHover] = useState(false);
 
   useEffect(()=>{
@@ -95,7 +102,8 @@ const Square = ({val}) => {
       draggable='false'
       onMouseDown={()=>setHover(true)}
       onMouseMove={(e)=>handler(e)}
-      className={(hover)?'square hovered':'square'}
+      className='square'
+      style={{background:hover?color:''}}
     >
     </div>
   )

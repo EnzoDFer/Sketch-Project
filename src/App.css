@@ -26,6 +26,29 @@ button {
   min-width: fit-content;
 }
 
+.app {
+  display: grid; 
+  grid-template-columns: 1fr 8fr; 
+  grid-template-rows: 1fr 8fr; 
+  gap: 10px 10px;  
+  grid-template-areas: 
+    "Controls Controls"
+    "Settings Main"; 
+}
+
+#controls { 
+  grid-area: Controls; 
+}
+
+#settings { 
+  grid-area: Settings; 
+}
+
+#main { 
+  grid-area: Main; 
+}
+
+
 .wrapper {
   display: flex;
   justify-content: space-around;
@@ -50,9 +73,9 @@ button {
   border: rgba(0, 0, 0, 0.178) 1px solid;
 }
 
-.hovered {
+/*.hovered {
   background: #333;
-}
+}*/
 
 .slider{
   width: 100%;
