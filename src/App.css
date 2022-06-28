@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Smooch&display=swap');
 * {
   box-sizing: border-box;
 }
@@ -32,8 +33,16 @@ button {
   grid-template-rows: 1fr 8fr; 
   gap: 10px 10px;  
   grid-template-areas: 
-    "Controls Controls"
+    "Title Controls"
     "Settings Main"; 
+}
+
+#title {
+  grid-area: Title;
+  font: bolder;
+  font-size: xx-large;
+  text-align: center;
+  font-family: 'Smooch', sans-serif;
 }
 
 #controls { 
@@ -42,6 +51,7 @@ button {
 
 #settings { 
   grid-area: Settings; 
+  gap: 16px;
 }
 
 #main { 
@@ -53,11 +63,16 @@ button {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 10px;
+  gap: 16px;
+}
+
+.wrapper > * {
+  flex: 1;
 }
 
 .vertWrapper {
   flex-direction: column;
+  display: flex;
 }
 
 .grid {
@@ -72,10 +87,6 @@ button {
   display: block;
   border: rgba(0, 0, 0, 0.178) 1px solid;
 }
-
-/*.hovered {
-  background: #333;
-}*/
 
 .slider{
   width: 100%;
@@ -92,17 +103,19 @@ button {
   opacity: 1;
 }
 
-#reset {
+button {
   background: aquamarine;
-  height: 100%;
-  width: 100%;
+  height: 15%;
+  align-items: stretch;
+  text-align: center;
+  min-width: fit-content;
   padding: 10px;
   opacity: 0.8;
   border-radius: 15px;
   border: 1px solid transparent;
 }
-#reset:hover,
-#reset:active {
+button:hover,
+button:active {
   opacity:1;
   border: 1px solid black;
 }

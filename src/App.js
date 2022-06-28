@@ -19,6 +19,7 @@ const Container = () => {
   
   return (
     <div className="app">
+      <div id="title">Sketch App</div>
       <div className="wrapper" id='controls'>
         <div className="wrapper vertWrapper">
           <div>Column #: {cols}</div>
@@ -28,12 +29,11 @@ const Container = () => {
           <div>Row #: {rows}</div>
           <Slider value={rows} onValueChange={onRowChange} />
         </div>
-        <div className="wrapper">
-          <Button handleClick={()=>setVal(val+1)} text='RESET'/>
-        </div>
+        <Button handleClick={()=>setVal(val+1)} text='RESET'/>
       </div>
       <div id="settings" className="vertWrapper">
-        <Button handleClick={()=>setColor('#0078d7')} text='Blue'/>
+        <Button handleClick={()=>setColor('#333')} text='BLACK'/>
+        <Button handleClick={()=>setColor(`#${Math.floor(Math.random()*16777215).toString(16)}`)} text='RANDOM COLOR'/>
       </div>
       <div id="main">
         <Grid rowNum={rows} colNum={cols} gridChildren={children}/>
@@ -42,10 +42,9 @@ const Container = () => {
   );
 };
 
-const Button = ({handleClick,text}) => {
+const Button = ({handleClick,text,id}) => {
   return (
     <button
-      id='reset'
       onClick={()=>handleClick()}
     >
       {text}
