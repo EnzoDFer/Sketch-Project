@@ -10,9 +10,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 30px;
-}
-
-html {
+  height: 100vh;
+  max-height: 100vh;
+  width:100vw;
   background: linear-gradient(45deg, rgba(224,151,41,1), rgba(45,253,158,1) );
 }
 

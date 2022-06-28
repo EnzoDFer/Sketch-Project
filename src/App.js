@@ -4,16 +4,17 @@ import { useEffect, useState } from "react";
 const Container = () => {
   const [rows, onRowChange] = useState(10);
   const [cols, onColChange] = useState(10);
-  const [children,doReset] = useState([]);
+  const [val, setVal] = useState(0);
 
-  useEffect(()=>{
-    for (let i=0;i<rows*cols;i++) {
-      children.push(<Square 
-        key={`key:${i}`}
-        />
-      );
-    }
-  },[children,cols,rows]);
+  const children = []
+  for (let i=0;i<rows*cols;i++) {
+    children.push(<Square 
+      key={`key:${i}`}
+      val={val}
+      />
+    );
+  }
+  
   return (
     <>
       <div className="wrapper">
@@ -26,7 +27,7 @@ const Container = () => {
           <Slider value={rows} onValueChange={onRowChange} />
         </div>
         <div className="wrapper">
-          <Button handleClick={()=>doReset([])} text='RESET'/>
+          <Button handleClick={()=>setVal(val+1)} text='RESET'/>
         </div>
       </div>
       <Grid rowNum={rows} colNum={cols} gridChildren={children}/>
@@ -76,8 +77,13 @@ const Grid = ({rowNum,colNum,gridChildren}) => {
   ); 
 };
 
-const Square = () => {
+const Square = ({val}) => {
   const [hover,setHover] = useState(false);
+
+  useEffect(()=>{
+    setHover(false);
+  },[val]);
+
   function handler(e) {
     if (e.buttons===1) {
       setHover(true);
@@ -86,6 +92,7 @@ const Square = () => {
 
   return (
     <div
+      draggable='false'
       onMouseDown={()=>setHover(true)}
       onMouseMove={(e)=>handler(e)}
       className={(hover)?'square hovered':'square'}
