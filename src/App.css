@@ -38,7 +38,7 @@ button {
 }
 
 .grid {
-  background-color: teal;
+  background-color: rgb(255, 255, 255);
   height: 80vh;
   display: grid;
   border-radius: 5px;
@@ -51,7 +51,7 @@ button {
 }
 
 .hovered {
-  background: #00000046;
+  background: #333;
 }
 
 .slider{
