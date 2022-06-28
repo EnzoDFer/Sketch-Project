@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Sketch-Project/static/css/main.c4c4dacd.css",
-    "main.js": "/Sketch-Project/static/js/main.b4bcf8aa.js",
+    "main.css": "/Sketch-Project/static/css/main.591cf4dc.css",
+    "main.js": "/Sketch-Project/static/js/main.8077536a.js",
     "static/js/787.5d43d3e1.chunk.js": "/Sketch-Project/static/js/787.5d43d3e1.chunk.js",
     "index.html": "/Sketch-Project/index.html",
-    "main.c4c4dacd.css.map": "/Sketch-Project/static/css/main.c4c4dacd.css.map",
-    "main.b4bcf8aa.js.map": "/Sketch-Project/static/js/main.b4bcf8aa.js.map",
+    "main.591cf4dc.css.map": "/Sketch-Project/static/css/main.591cf4dc.css.map",
+    "main.8077536a.js.map": "/Sketch-Project/static/js/main.8077536a.js.map",
     "787.5d43d3e1.chunk.js.map": "/Sketch-Project/static/js/787.5d43d3e1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c4c4dacd.css",
-    "static/js/main.b4bcf8aa.js"
+    "static/css/main.591cf4dc.css",
+    "static/js/main.8077536a.js"
   ]
 }
